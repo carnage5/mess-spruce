@@ -1,33 +1,4 @@
 # mess
-
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@carnage5 
-PrathamBhatTech
-/
-Mess-Spruce
-1
-00
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-Mess-Spruce/README.md
-@PrathamBhatTech
-PrathamBhatTech Update README.md
-Latest commit a7e8e3a 2 days ago
- History
- 1 contributor
-29 lines (20 sloc)  1.44 KB
   
 Mess-Spruce
 Team Name - Team-14
