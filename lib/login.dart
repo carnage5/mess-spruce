@@ -60,6 +60,7 @@ class _loginState extends State<login> {
                     padding: const EdgeInsets.symmetric(vertical:4.0,horizontal: 16.0),
                     child: TextFormField(
                       controller: password_controller,
+                      obscureText: true,
                       validator: (val){
                         if(val==null || val.isEmpty)
                         {return 'Required';}
@@ -71,7 +72,9 @@ class _loginState extends State<login> {
                         labelText: "Password",
                         labelStyle: TextStyle(
                           fontSize: 15.0,
-                          color: Colors.amberAccent,),
+                          color: Colors.amberAccent,
+
+                        ),
                         border: OutlineInputBorder(),
                         fillColor: Colors.blueGrey,
                         filled: true,
