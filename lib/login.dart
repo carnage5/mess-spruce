@@ -12,7 +12,6 @@ class _loginState extends State<login> {
   TextEditingController srn_controller= TextEditingController();
   TextEditingController password_controller= TextEditingController();
   final _form=GlobalKey<FormState>();
-  //String? password;//holds password value once login button is pressed
   String? srn; //holds srn value once login button is pressed
   var password_check;
   @override
@@ -41,6 +40,11 @@ class _loginState extends State<login> {
                   padding: const EdgeInsets.all(16.0),
                   child: TextFormField(
                     controller: srn_controller,
+                    validator: (val){
+                      if(val==null || val.isEmpty)
+                      {return 'Required';}
+                      return null;
+                    },
                     decoration: InputDecoration(
                       labelText: "SRN",
                       labelStyle: TextStyle(
@@ -89,7 +93,7 @@ class _loginState extends State<login> {
                   onPressed: (){
                     password_check='hoho';
                     srn=srn_controller.text.toString();
-                    //password=password_controller.text.toString();
+
                     if(_form.currentState!.validate())
                       {
                         Navigator.pushNamed(context, '/menu');
