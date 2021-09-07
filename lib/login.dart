@@ -17,7 +17,7 @@ class _loginState extends State<login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900],
+      backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text(
             'Mess Spruce',
@@ -26,7 +26,7 @@ class _loginState extends State<login> {
         ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.amberAccent,
+        backgroundColor: Colors.red[900],
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -49,9 +49,9 @@ class _loginState extends State<login> {
                       labelText: "SRN",
                       labelStyle: TextStyle(
                         fontSize: 15.0,
-                        color: Colors.amberAccent,),
+                        color: Colors.black,),
                       border: OutlineInputBorder(),
-                      fillColor: Colors.blueGrey,
+                      fillColor: Colors.grey,
                       filled: true,
                     ),
                   ),
@@ -79,11 +79,11 @@ class _loginState extends State<login> {
                         labelText: "Password",
                         labelStyle: TextStyle(
                           fontSize: 15.0,
-                          color: Colors.amberAccent,
+                          color: Colors.black,
 
                         ),
                         border: OutlineInputBorder(),
-                        fillColor: Colors.blueGrey,
+                        fillColor: Colors.grey,
                         filled: true,
                       ),
                     ),
@@ -111,7 +111,7 @@ class _loginState extends State<login> {
 
                   },
                   child: Text('Login'),
-              color: Colors.amberAccent,),
+              color: Colors.red[900],),
             ),
           )
         ],
