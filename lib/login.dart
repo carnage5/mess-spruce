@@ -60,7 +60,7 @@ class _loginState extends State<login> {
                     padding: const EdgeInsets.symmetric(vertical:4.0,horizontal: 16.0),
                     child: TextFormField(
                       controller: password_controller,
-                      obscureText: true,
+                    obscureText: lg,
                       validator: (val){
                         if(val==null || val.isEmpty)
                         {return 'Required';}
@@ -68,7 +68,14 @@ class _loginState extends State<login> {
                           return 'Password does not match ';
                         return null;
                       },
-                      decoration: InputDecoration(
+                      decoration: InputDecoration(suffixIcon: IconButton(
+                        onPressed: (){
+                          setState(() {
+                            lg=!lg;
+                          });
+                        },
+                        icon: Icon(lg ? Icons.remove_red_eye : Icons.security),
+                      ),
                         labelText: "Password",
                         labelStyle: TextStyle(
                           fontSize: 15.0,
@@ -94,8 +101,8 @@ class _loginState extends State<login> {
               height: 50.0,
               child: FlatButton(
                   onPressed: (){
-                    password_check='hoho';
-                    srn=srn_controller.text.toString();
+                    password_check='hoho'; //set password to compare with here
+                    srn=srn_controller.text.toString();//srn holds the inputted srn from the user
 
                     if(_form.currentState!.validate())
                       {
