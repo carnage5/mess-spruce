@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:barcode_scan/platform_wrapper.dart';
-import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/services.dart';
@@ -14,7 +13,7 @@ class qrscan extends StatefulWidget {
 }
 
 class _qrscanState extends State<qrscan> {
-  String result ="Hey there";
+  String result ="Waiting...";
   Future _scanqr() async {
     try {
       ScanResult  qrResult = await BarcodeScanner.scan() ;
@@ -42,7 +41,7 @@ class _qrscanState extends State<qrscan> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.amberAccent,
         title: Text(
@@ -58,9 +57,12 @@ class _qrscanState extends State<qrscan> {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: _scanqr,
+        onPressed:(){
+          _scanqr;
+          //Navigator.pushNamed(context, '/payment');
+        },
         icon:Icon(Icons.camera_alt_rounded),
-        label: Text('qrscanner'),
+        label: Text('Scan Now'),
         backgroundColor: Colors.amberAccent,
 
       ),

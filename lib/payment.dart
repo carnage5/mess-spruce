@@ -9,6 +9,8 @@ class payment extends StatefulWidget {
 class _paymentState extends State<payment> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: Text('coming soon..'),
+    );
   }
 }

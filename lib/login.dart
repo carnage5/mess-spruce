@@ -17,16 +17,16 @@ class _loginState extends State<login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900],
+      backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text(
-            'Mess Spruce',
-        style: TextStyle(
-          color: Colors.black,
-        ),
+          'Mess Spruce',
+          style: TextStyle(
+            color: Colors.black,
+          ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.amberAccent,
+        backgroundColor: Colors.red[900],
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -34,8 +34,8 @@ class _loginState extends State<login> {
         children: <Widget>[
           Form(
             key: _form,
-              child: Column(
-                children: <Widget>[
+            child: Column(
+              children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: TextFormField(
@@ -49,37 +49,47 @@ class _loginState extends State<login> {
                       labelText: "SRN",
                       labelStyle: TextStyle(
                         fontSize: 15.0,
-                        color: Colors.amberAccent,),
+                        color: Colors.black,),
                       border: OutlineInputBorder(),
-                      fillColor: Colors.blueGrey,
+                      fillColor: Colors.grey,
                       filled: true,
                     ),
                   ),
                 ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical:4.0,horizontal: 16.0),
-                    child: TextFormField(
-                      controller: password_controller,
-                      validator: (val){
-                        if(val==null || val.isEmpty)
-                        {return 'Required';}
-                        if(val.compareTo(password_check)!=0)
-                          return 'Password does not match ';
-                        return null;
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical:4.0,horizontal: 16.0),
+                  child: TextFormField(
+                    controller: password_controller,
+                    obscureText: lg,
+                    validator: (val){
+                      if(val==null || val.isEmpty)
+                      {return 'Required';}
+                      if(val.compareTo(password_check)!=0)
+                        return 'Password does not match ';
+                      return null;
+                    },
+                    decoration: InputDecoration(suffixIcon: IconButton(
+                      onPressed: (){
+                        setState(() {
+                          lg=!lg;
+                        });
                       },
-                      decoration: InputDecoration(
-                        labelText: "Password",
-                        labelStyle: TextStyle(
-                          fontSize: 15.0,
-                          color: Colors.amberAccent,),
-                        border: OutlineInputBorder(),
-                        fillColor: Colors.blueGrey,
-                        filled: true,
+                      icon: Icon(lg ? Icons.remove_red_eye : Icons.security),
+                    ),
+                      labelText: "Password",
+                      labelStyle: TextStyle(
+                        fontSize: 15.0,
+                        color: Colors.black,
+
                       ),
+                      border: OutlineInputBorder(),
+                      fillColor: Colors.grey,
+                      filled: true,
                     ),
                   ),
-               ],
-              ),
+                ),
+              ],
+            ),
           ),
           SizedBox(
             height: 20.0,
@@ -90,18 +100,18 @@ class _loginState extends State<login> {
             child: ButtonTheme(
               height: 50.0,
               child: FlatButton(
-                  onPressed: (){
-                    password_check='hoho';
-                    srn=srn_controller.text.toString();
+                onPressed: (){
+                  password_check='hoho'; //set password to compare with here
+                  srn=srn_controller.text.toString();//srn holds the inputted srn from the user
 
-                    if(_form.currentState!.validate())
-                      {
-                        Navigator.pushNamed(context, '/menu');
-                      }
+                  if(_form.currentState!.validate())
+                  {
+                    Navigator.pushNamed(context, '/menu');
+                  }
 
-                  },
-                  child: Text('Login'),
-              color: Colors.amberAccent,),
+                },
+                child: Text('Login'),
+                color: Colors.red[900],),
             ),
           )
         ],

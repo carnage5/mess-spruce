@@ -6,7 +6,7 @@ class menu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900],
+      backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text(
             'Menu',
@@ -14,7 +14,7 @@ class menu extends StatelessWidget {
             color: Colors.black,
         ),),
         centerTitle: true,
-        backgroundColor: Colors.amberAccent,
+        backgroundColor: Colors.red[900],
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -29,7 +29,7 @@ class menu extends StatelessWidget {
                     Navigator.pushNamed(context, '/selectmess');
                   },
                   child: Text('Select Mess'),
-                  color: Colors.amberAccent,
+                  color: Colors.red[900],
               ),
             ),
             SizedBox(
@@ -43,7 +43,7 @@ class menu extends StatelessWidget {
                     Navigator.pushNamed(context, '/qrscan');
                   },
                   child: Text('Scan QR'),
-                  color: Colors.amberAccent,
+                  color: Colors.red[900],
               ),
             ),
           ],
