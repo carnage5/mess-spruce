@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 class login extends StatefulWidget {
@@ -10,6 +9,11 @@ class login extends StatefulWidget {
 
 class _loginState extends State<login> {
   bool lg=true;
+  TextEditingController srn_controller= TextEditingController();
+  TextEditingController password_controller= TextEditingController();
+  final _form=GlobalKey<FormState>();
+  String? srn; //holds srn value once login button is pressed
+  var password_check;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,60 +32,73 @@ class _loginState extends State<login> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: "SRN",
-                hintStyle: TextStyle(
-                  color: Colors.blue,
-                ),
-                labelText: "SRN",
-                labelStyle: TextStyle(
-                  fontSize: 15.0,
-                  color: Colors.amberAccent,
-                ),
-                border: OutlineInputBorder(),
-                fillColor: Colors.blueGrey,
-                filled: true,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: TextField(
-              decoration: InputDecoration(
-                //hintText: "Password",
-                hintStyle: TextStyle(
-                  color: Colors.blue,
-                ),
-                labelText: "Password",
-                labelStyle: TextStyle(
-                  fontSize: 15.0,
-                  color: Colors.amberAccent,
-                ),
-                border: OutlineInputBorder(),
-                fillColor: Colors.blueGrey,
-                filled: true,
-                suffixIcon: IconButton(
-                    onPressed: (){
-                      setState(() {
-                        lg=!lg;
-                      });
+          Form(
+            key: _form,
+              child: Column(
+                children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: TextFormField(
+                    controller: srn_controller,
+                    validator: (val){
+                      if(val==null || val.isEmpty)
+                      {return 'Required';}
+                      return null;
                     },
-                    icon: Icon(lg ? Icons.remove_red_eye : Icons.security),
+                    decoration: InputDecoration(
+                      labelText: "SRN",
+                      labelStyle: TextStyle(
+                        fontSize: 15.0,
+                        color: Colors.amberAccent,),
+                      border: OutlineInputBorder(),
+                      fillColor: Colors.blueGrey,
+                      filled: true,
+                    ),
+                  ),
                 ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical:4.0,horizontal: 16.0),
+                    child: TextFormField(
+                      controller: password_controller,
+                      validator: (val){
+                        if(val==null || val.isEmpty)
+                        {return 'Required';}
+                        if(val.compareTo(password_check)!=0)
+                          return 'Password does not match ';
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                        labelText: "Password",
+                        labelStyle: TextStyle(
+                          fontSize: 15.0,
+                          color: Colors.amberAccent,),
+                        border: OutlineInputBorder(),
+                        fillColor: Colors.blueGrey,
+                        filled: true,
+                      ),
+                    ),
+                  ),
+               ],
               ),
-              obscureText: lg,
-            ),
           ),
+          SizedBox(
+            height: 20.0,
+          ),
+
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 25.0,horizontal: 75.0),
             child: ButtonTheme(
               height: 50.0,
               child: FlatButton(
                   onPressed: (){
-                    Navigator.pushNamed(context, '/menu');
+                    password_check='hoho';
+                    srn=srn_controller.text.toString();
+
+                    if(_form.currentState!.validate())
+                      {
+                        Navigator.pushNamed(context, '/menu');
+                      }
+
                   },
                   child: Text('Login'),
               color: Colors.amberAccent,),
@@ -92,3 +109,51 @@ class _loginState extends State<login> {
     );
   }
 }
+
+
+/*
+TextField(
+            controller: srn_controller,
+            decoration: InputDecoration(
+              hintText: "SRN",
+              hintStyle: TextStyle(
+                color: Colors.blue,
+              ),
+
+              labelText: "SRN",
+              labelStyle: TextStyle(
+                fontSize: 15.0,
+                color: Colors.amberAccent,
+              ),
+              border: OutlineInputBorder(),
+              fillColor: Colors.blueGrey,
+              filled: true,
+            ),
+          ),
+          TextField(
+            controller: password_controller,
+            decoration: InputDecoration(
+              //hintText: "Password",
+              hintStyle: TextStyle(
+                color: Colors.blue,
+              ),
+              labelText: "Password",
+              labelStyle: TextStyle(
+                fontSize: 15.0,
+                color: Colors.amberAccent,
+              ),
+              border: OutlineInputBorder(),
+              fillColor: Colors.blueGrey,
+              filled: true,
+              suffixIcon: IconButton(
+                  onPressed: (){
+                    setState(() {
+                      lg=!lg;
+                    });
+                  },
+                  icon: Icon(lg ? Icons.remove_red_eye : Icons.security),
+              ),
+            ),
+            obscureText: lg,
+          ),
+ */

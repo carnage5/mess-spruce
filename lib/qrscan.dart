@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:barcode_scan/platform_wrapper.dart';
+import 'package:flutter/material.dart';
+import 'dart:async';
+import 'package:barcode_scan/barcode_scan.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/scheduler.dart';
+import 'dart:core';
 class qrscan extends StatefulWidget {
   const qrscan({Key? key}) : super(key: key);
 
@@ -7,10 +14,35 @@ class qrscan extends StatefulWidget {
 }
 
 class _qrscanState extends State<qrscan> {
+  String result ="Hey there";
+  Future _scanqr() async {
+    try {
+      ScanResult  qrResult = await BarcodeScanner.scan() ;
+      setState(() {
+        result = qrResult.rawContent  ;
+      });
+    } on PlatformException catch (ex) {
+      if (ex.code == BarcodeScanner.cameraAccessDenied) {
+        setState(() {
+          result = "camera permission is denied";
+        });
+      }
+      else {
+        setState(() {
+          result = 'unknown error $ex';
+        });
+      }
+    }on FormatException  {
+      setState(() {
+        result ="you pressed back ";
+      });
+
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900],
+      backgroundColor: Colors.grey,
       appBar: AppBar(
         backgroundColor: Colors.amberAccent,
         title: Text(
@@ -20,6 +52,19 @@ class _qrscanState extends State<qrscan> {
         ),
         ),
       ),
+      body: Center(
+        child: Text(
+          result,
+        ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: _scanqr,
+        icon:Icon(Icons.camera_alt_rounded),
+        label: Text('qrscanner'),
+        backgroundColor: Colors.amberAccent,
+
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
