@@ -5,6 +5,8 @@ import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/scheduler.dart';
 import 'dart:core';
+
+import 'package:mess/payment.dart';
 class qrscan extends StatefulWidget {
   const qrscan({Key? key}) : super(key: key);
 
@@ -19,6 +21,9 @@ class _qrscanState extends State<qrscan> {
       ScanResult  qrResult = await BarcodeScanner.scan() ;
       setState(() {
         result = qrResult.rawContent  ;
+        if (result == '9676511576'){
+            Navigator.pushNamed(context, '/payment');
+        }
       });
     } on PlatformException catch (ex) {
       if (ex.code == BarcodeScanner.cameraAccessDenied) {
@@ -57,10 +62,7 @@ class _qrscanState extends State<qrscan> {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed:(){
-          _scanqr;
-          //Navigator.pushNamed(context, '/payment');
-        },
+        onPressed:_scanqr,
         icon:Icon(Icons.camera_alt_rounded),
         label: Text('Scan Now'),
         backgroundColor: Colors.amberAccent,
