@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:mess/menu.dart';
+
 class login extends StatefulWidget {
   const login({Key? key}) : super(key: key);
 
@@ -101,13 +103,19 @@ class _loginState extends State<login> {
               height: 50.0,
               child: FlatButton(
                 onPressed: (){
+
                   password_check='hoho'; //set password to compare with here
-                  srn=srn_controller.text.toString();//srn holds the inputted srn from the user
+                  srn=srn_controller.text.toString();//srn holds the inputted srn from the user,use it to search the db
 
                   if(_form.currentState!.validate())
                   {
-                    Navigator.pushNamed(context, '/menu');
+                    Navigator.push(context,
+                    MaterialPageRoute(builder: (context) {
+                      return menu(var1:srn);
+                    })
+                    );
                   }
+
 
                 },
                 child: Text('Login'),
@@ -117,6 +125,7 @@ class _loginState extends State<login> {
         ],
       ),
     );
+
   }
 }
 

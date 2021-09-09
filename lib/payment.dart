@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+
 class payment extends StatefulWidget {
   const payment({Key? key}) : super(key: key);
 
@@ -20,46 +23,95 @@ class _paymentState extends State<payment> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red[900],
+        centerTitle: true,
         title: Text(
-          'food court',
+          'Payment',
           style: TextStyle(
             color: Colors.black,
           ),
         ),
       ),
-      body:Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Text('Remaing amount is:'),
-          Text('$money',style: DefaultTextStyle.of(context).style.apply(fontSizeFactor: 1.5)),
-           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-            child: TextField(
-              controller:payment,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Enter in rupees',
-              ),
+      body:Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Text('Balance: $money',
+            style: TextStyle(
+              fontSize: 25.0,
+              color: Colors.pink,
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 40.0,horizontal: 150.0),
-            child: ButtonTheme(
+            ),
+              SizedBox(
+                height: 50.0,
+              ),
+             TextField(
+               controller:payment,
+               keyboardType: TextInputType.number,
+               decoration: InputDecoration(
+                 border: UnderlineInputBorder(),
+                 hintText: 'Enter in rupees',
+               ),
+             ),
+            SizedBox(
               height: 50.0,
+
+            ),
+            ButtonTheme(
+              height: 50.0,
+              minWidth: 100.0,
               child: FlatButton(
                 onPressed: (){
-                      setState(() {
-                          money=money-int.parse(payment.text);
-                      });
+                  showAlertDialog(context,int.parse(payment.text));
+                  Future.delayed(Duration(seconds:3),()
+                   {setState(() {
+                      money=money-int.parse(payment.text);
+                    });});
 
                 },
                 child: Text('pay'),
                 color: Colors.red[900],),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       )
     );
   }
+}
+
+showAlertDialog(BuildContext context,int pay) {
+  // Create button
+  int x=0;
+  Widget confirmButton = FlatButton(
+    child: Text("Confirm"),
+    onPressed: () {
+      Navigator.of(context).pop();
+    },
+  );
+  Widget cancelButton = FlatButton(
+    child: Text("Cancel"),
+    onPressed: () {
+      Navigator.of(context).pop();
+      
+    },
+  );
+
+  // Create AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("Alert"),
+    content: Text("Pay Rs $pay ?"),
+    actions: [
+      confirmButton,
+      cancelButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }
