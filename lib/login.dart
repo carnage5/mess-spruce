@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'csvOperations.dart';
+
 class login extends StatefulWidget {
   const login({Key? key}) : super(key: key);
 
@@ -101,8 +103,9 @@ class _loginState extends State<login> {
               height: 50.0,
               child: FlatButton(
                 onPressed: (){
-                  password_check='hoho'; //set password to compare with here
                   srn=srn_controller.text.toString();//srn holds the inputted srn from the user
+
+                  password_check=checkCredentials(srn); //set password to compare with here
 
                   if(_form.currentState!.validate())
                   {

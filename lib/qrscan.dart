@@ -3,7 +3,7 @@ import 'package:barcode_scan/platform_wrapper.dart';
 import 'dart:async';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/scheduler.dart';
+// import 'package:flutter/scheduler.dart';
 import 'dart:core';
 class qrscan extends StatefulWidget {
   const qrscan({Key? key}) : super(key: key);
@@ -57,10 +57,8 @@ class _qrscanState extends State<qrscan> {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed:(){
-          _scanqr;
+        onPressed:_scanqr,
           //Navigator.pushNamed(context, '/payment');
-        },
         icon:Icon(Icons.camera_alt_rounded),
         label: Text('Scan Now'),
         backgroundColor: Colors.amberAccent,
