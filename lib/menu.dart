@@ -1,8 +1,11 @@
 
 import 'package:flutter/material.dart';
-class menu extends StatelessWidget {
-  const menu({Key? key}) : super(key: key);
+import 'package:mess/qrscan.dart';
 
+class menu extends StatelessWidget {
+  String? var1;
+  //const menu({Key? key}) : super(key: key);
+  menu({this.var1});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +43,9 @@ class menu extends StatelessWidget {
               height: 50.0,
               child: FlatButton(
                   onPressed: (){
-                    Navigator.pushNamed(context, '/qrscan');
+                    Navigator.push(context,MaterialPageRoute(
+                        builder: (context){
+                          return qrscan(pass:var1); }));
                   },
                   child: Text('Scan QR'),
                   color: Colors.red[900],

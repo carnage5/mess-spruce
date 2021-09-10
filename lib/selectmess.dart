@@ -89,7 +89,6 @@ showAlertDialog(BuildContext context,String? mess) {
       Navigator.of(context).pop();
     },
   );
-
   // Create AlertDialog
   AlertDialog alert = AlertDialog(
     title: Text("Alert"),
@@ -98,7 +97,6 @@ showAlertDialog(BuildContext context,String? mess) {
       okButton,
     ],
   );
-
   // show the dialog
   showDialog(
     context: context,

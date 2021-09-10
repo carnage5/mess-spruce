@@ -1,7 +1,7 @@
 
-import 'package:flutter/material.dart';
 import 'csvOperations.dart';
-
+import 'package:mess/menu.dart';
+import 'package:flutter/material.dart';
 class login extends StatefulWidget {
   const login({Key? key}) : super(key: key);
 
@@ -109,7 +109,11 @@ class _loginState extends State<login> {
 
                   if(_form.currentState!.validate())
                   {
-                    Navigator.pushNamed(context, '/menu');
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                          return menu(var1:srn);
+                        })
+                    );
                   }
 
                 },
