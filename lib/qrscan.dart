@@ -29,38 +29,38 @@ class _qrscanState extends State<qrscan> {
         if (result == messcheck) // compare the mess in the database to the scanned mess here
             {
           Navigator.pushNamed(context, '/payment');
-          result = "Waiting....";
+          result = "Waiting...";
         }
         else
           showAlertDialog(context, result);
+          result="Warning: Scan again";
       });
     } on PlatformException catch (ex) {
       if (ex.code == BarcodeScanner.cameraAccessDenied) {
         setState(() {
-          result = "camera permission is denied";
+          result = "Alert: camera permission is denied";
         });
       }
       else {
         setState(() {
-          result = 'unknown error $ex';
+          result = 'Error: Alert: unknown error $ex';
         });
       }
     } on FormatException {
       setState(() {
-        result = "you pressed back ";
+        result = "Alert: you pressed back ";
       });
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    String? srn = widget
-        .pass; //users srn is stored here , use it to search the db and get mess alloted
+    String? srn = widget.pass; //users srn is stored here , use it to search the db and get mess alloted
     messcheck = getMess(srn); //store the alloted mess in this variable
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.amberAccent,
+        backgroundColor: Colors.orange,
         title: Text(
           'QR Scanner',
           style: TextStyle(
@@ -68,57 +68,102 @@ class _qrscanState extends State<qrscan> {
           ),
         ),
       ),
-      body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage(
+                "https://previews.123rf.com/images/paitoonpati/paitoonpati1709/paitoonpati170900135/86156468-seamless-pattern-background-food-and-ingredient-kids-hand-drawing-set-illustration-isolated-on-white.jpg"
+            ),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Column(
           children: <Widget>[
-
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text('You belong to :',
+            SizedBox(
+              height: 150.0,
+            ),
+          Container(
+            color: Colors.orange[100],
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child:
+              Text('You belong to  ',
                   style: TextStyle(
-                    //fontWeight: FontWeight.bold,
                     fontSize: 20.0,
-                  )),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.all(100.0),
-              child: Text('$messcheck',
-                  style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 38.0,
-                    color: Colors.deepOrange,
+                    color: Colors.red[900],
                   )),
             ),
-            Text('$result'),
-          ]
-      ),
+          ),
+            Container(
+              color: Colors.orange[100],
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child:
+                Text('$messcheck ',
+                    style: TextStyle(
+                      fontSize: 35.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.red[900],
+                    )),
+              ),
+            ),
+            Container(
+              color: Colors.orange[100],
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child:
+                Text(' $result ',
+                    style: TextStyle(
+                      fontSize: 23.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.red[900],
+                    )),
+              ),
+            ),
+            SizedBox(
+              height: 140.0,
+            ),
+            Center(
 
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          _scanqr();
-        },
-        icon: Icon(Icons.camera_alt_rounded),
-        label: Text('Scan Now'),
-        backgroundColor: Colors.amberAccent,
+              child: FloatingActionButton.extended(
+                onPressed: () {
+                  _scanqr();
+                },
+                splashColor: Colors.red,
+                icon: Icon(Icons.camera_alt_rounded,
+                color: Colors.black,
+                size: 30.0,),
+                label: Text(
+                  'Scan Now',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20.0,
+                  ),
+                ),
+                backgroundColor: Colors.orange,
+              ),
+            ),
+          ],
+        ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 
   showAlertDialog(BuildContext context, String? mess) {
     // Create button
     Widget okButton = FlatButton(
-      child: Text("OK"),
+      child: Text("Try again"),
+      color: Colors.orange,
       onPressed: () {
         Navigator.of(context).pop();
       },
     );
     // Create AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("Alert"),
-      content: Text("$mess was scanned please scan alloted mess"),
+      title: Text("Warning !!"),
+
+      content: Text("You were not allocated $mess"),
       actions: [
         okButton,
       ],

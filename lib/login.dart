@@ -19,7 +19,7 @@ class _loginState extends State<login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      //backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text(
           'Mess Spruce',
@@ -28,100 +28,110 @@ class _loginState extends State<login> {
           ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.red[900],
+        backgroundColor: Colors.orange,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Form(
-            key: _form,
-            child: Column(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: TextFormField(
-                    controller: srn_controller,
-                    validator: (val){
-                      if(val==null || val.isEmpty)
-                      {return 'Required';}
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                      labelText: "SRN",
-                      labelStyle: TextStyle(
-                        fontSize: 15.0,
-                        color: Colors.black,),
-                      border: OutlineInputBorder(),
-                      fillColor: Colors.grey,
-                      filled: true,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical:4.0,horizontal: 16.0),
-                  child: TextFormField(
-                    controller: password_controller,
-                    obscureText: lg,
-                    validator: (val){
-                      if(val==null || val.isEmpty)
-                      {return 'Required';}
-                      if(val.compareTo(password_check)!=0)
-                        return 'Password does not match ';
-                      return null;
-                    },
-                    decoration: InputDecoration(suffixIcon: IconButton(
-                      onPressed: (){
-                        setState(() {
-                          lg=!lg;
-                        });
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage(
+                "https://previews.123rf.com/images/paitoonpati/paitoonpati1709/paitoonpati170900135/86156468-seamless-pattern-background-food-and-ingredient-kids-hand-drawing-set-illustration-isolated-on-white.jpg"
+            ),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Form(
+              key: _form,
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: TextFormField(
+                      controller: srn_controller,
+                      validator: (val){
+                        if(val==null || val.isEmpty)
+                        {return 'Required';}
+                        return null;
                       },
-                      icon: Icon(lg ? Icons.remove_red_eye : Icons.security),
-                    ),
-                      labelText: "Password",
-                      labelStyle: TextStyle(
-                        fontSize: 15.0,
-                        color: Colors.black,
-
+                      decoration: InputDecoration(
+                        labelText: "SRN",
+                        labelStyle: TextStyle(
+                          fontSize: 15.0,
+                          color: Colors.black,),
+                        border: OutlineInputBorder(),
+                        fillColor: Colors.white,
+                        filled: true,
                       ),
-                      border: OutlineInputBorder(),
-                      fillColor: Colors.grey,
-                      filled: true,
                     ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical:4.0,horizontal: 16.0),
+                    child: TextFormField(
+                      controller: password_controller,
+                      obscureText: lg,
+                      validator: (val){
+                        if(val==null || val.isEmpty)
+                        {return 'Required';}
+                        if(val.compareTo(password_check)!=0)
+                          return 'Password does not match ';
+                        return null;
+                      },
+                      decoration: InputDecoration(suffixIcon: IconButton(
+                        onPressed: (){
+                          setState(() {
+                            lg=!lg;
+                          });
+                        },
+                        icon: Icon(lg ? Icons.remove_red_eye : Icons.security),
+                      ),
+                        labelText: "Password",
+                        labelStyle: TextStyle(
+                          fontSize: 15.0,
+                          color: Colors.black,
+
+                        ),
+                        border: OutlineInputBorder(),
+                        fillColor: Colors.white,
+                        filled: true,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          SizedBox(
-            height: 20.0,
-          ),
-
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 25.0,horizontal: 75.0),
-            child: ButtonTheme(
-              height: 50.0,
-              child: FlatButton(
-                onPressed: (){
-                  srn=srn_controller.text.toString();//srn holds the inputted srn from the user
-
-                  password_check=checkCredentials(srn); //set password to compare with here
-
-                  if(_form.currentState!.validate())
-                  {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                          return menu(var1:srn);
-                        })
-                    );
-                  }
-
-                },
-                child: Text('Login'),
-                color: Colors.red[900],),
+            SizedBox(
+              height: 20.0,
             ),
-          )
-        ],
+
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 25.0,horizontal: 75.0),
+              child: ButtonTheme(
+                height: 50.0,
+                child: FlatButton(
+                  onPressed: (){
+                    srn=srn_controller.text.toString();//srn holds the inputted srn from the user
+
+                    password_check=checkCredentials(srn); //set password to compare with here
+
+                    if(_form.currentState!.validate())
+                    {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                            return menu(var1:srn);
+                          })
+                      );
+                    }
+
+                  },
+                  child: Text('Login'),
+                  color: Colors.orange,),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

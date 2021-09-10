@@ -33,8 +33,11 @@
 //
 // }
 var data = [
-  ['PES1UG20CS305', 'password305', 'Naamdhari'],
-  ['PES1UG20CS315', 'password315', 'Food Court'],
+  ['PES1UG20CS305', 'password305', 'Mess 1'],
+  ['PES1UG20CS315', 'password315', 'Mess 2'],
+  ['PES1UG20CS007', 'password007', 'Mess 3'],
+  ['PES1UG20CS069', 'password069', 'Mess 2'],
+  ['PES1UG20CS420', 'password420', 'Mess 1'],
 ];
 
 String checkCredentials(String? srn) {

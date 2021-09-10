@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -12,6 +11,8 @@ class payment extends StatefulWidget {
 class _paymentState extends State<payment> {
   TextEditingController payment = new TextEditingController();
   int money=4500;
+  int check=0;
+  int data=0;
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
@@ -22,7 +23,7 @@ class _paymentState extends State<payment> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.red[900],
+        backgroundColor: Colors.orange,
         centerTitle: true,
         title: Text(
           'Payment',
@@ -31,27 +32,48 @@ class _paymentState extends State<payment> {
           ),
         ),
       ),
-      body:Padding(
-        padding: const EdgeInsets.all(20.0),
+      body:
+      Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage(
+                "https://previews.123rf.com/images/paitoonpati/paitoonpati1709/paitoonpati170900135/86156468-seamless-pattern-background-food-and-ingredient-kids-hand-drawing-set-illustration-isolated-on-white.jpg"
+            ),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Text('Balance: $money',
-            style: TextStyle(
-              fontSize: 25.0,
-              color: Colors.pink,
+            SizedBox(
+              height: 25.0,
             ),
+            Container(
+              padding: EdgeInsets.all(20.0),
+              color: Colors.orange[100],
+              child: Text('Balance: ₹ $money',
+              style: TextStyle(
+                fontSize: 25.0,
+                color: Colors.red[900],
+              ),
+              ),
             ),
               SizedBox(
-                height: 50.0,
+                height: 40.0,
               ),
-             TextField(
-               controller:payment,
-               keyboardType: TextInputType.number,
-               decoration: InputDecoration(
-                 border: UnderlineInputBorder(),
-                 hintText: 'Enter in rupees',
+             Padding(
+               padding: const EdgeInsets.all(30.0),
+               child: TextField(
+                 controller:payment,
+                 keyboardType: TextInputType.number,
+
+                 decoration: InputDecoration(
+                   fillColor: Colors.orange[100],
+                   filled: true,
+                   border: UnderlineInputBorder(),
+                   hintText: 'Enter in ₹',
+                 ),
                ),
              ),
             SizedBox(
@@ -63,15 +85,19 @@ class _paymentState extends State<payment> {
               minWidth: 100.0,
               child: FlatButton(
                 onPressed: (){
-                  showAlertDialog(context,int.parse(payment.text));
-                  Future.delayed(Duration(seconds:3),()
-                   {setState(() {
-                      money=money-int.parse(payment.text);
-                    });});
-
+                  if(int.parse(payment.text)>4500)
+                    showAlertDialog1(context);
+                  else {
+                    showAlertDialog(context,int.parse(payment.text));
+                    Future.delayed(Duration(seconds: 5), () {
+                      setState(() {
+                        money = money - int.parse(payment.text);
+                      });
+                    });
+                  }
                 },
                 child: Text('pay'),
-                color: Colors.red[900],),
+                color: Colors.orange,),
             )
           ],
         ),
@@ -82,11 +108,13 @@ class _paymentState extends State<payment> {
 
 showAlertDialog(BuildContext context,int pay) {
   // Create button
-  int x=0;
+
+
   Widget confirmButton = FlatButton(
     child: Text("Confirm"),
     onPressed: () {
       Navigator.of(context).pop();
+      showAlertDialog2(context);
     },
   );
   Widget cancelButton = FlatButton(
@@ -99,12 +127,14 @@ showAlertDialog(BuildContext context,int pay) {
 
   // Create AlertDialog
   AlertDialog alert = AlertDialog(
+
     title: Text("Alert"),
-    content: Text("Pay Rs $pay ?"),
+    content: Text("Pay ₹ $pay ?"),
     actions: [
       confirmButton,
       cancelButton,
     ],
+
   );
 
   // show the dialog
@@ -115,3 +145,63 @@ showAlertDialog(BuildContext context,int pay) {
     },
   );
 }
+showAlertDialog1(BuildContext context) {
+  // Create button
+  Widget okButton = FlatButton(
+    child: Text("Okay"),
+    onPressed: () {
+      Navigator.of(context).pop();
+    },
+  );
+  // Create AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("Warning"),
+    content: Text("Entered amount too large"),
+    actions: [
+      okButton
+    ],
+
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
+showAlertDialog2(BuildContext context) {
+  // Create button
+  Widget okButton = FlatButton(
+    child: Text("Okay"),
+    onPressed: () {
+      Navigator.of(context).pop();
+    },
+  );
+  // Create AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("Success",
+    style: TextStyle(
+        color: Colors.green,
+    ),),
+    content: Text(
+        "Payment Successful",
+    style: TextStyle(
+      color: Colors.green,
+    ),),
+    actions: [
+      okButton
+    ],
+
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
+

@@ -9,7 +9,7 @@ class menu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      //backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text(
             'Menu',
@@ -17,41 +17,59 @@ class menu extends StatelessWidget {
             color: Colors.black,
         ),),
         centerTitle: true,
-        backgroundColor: Colors.red[900],
+        backgroundColor: Colors.orange ,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            ButtonTheme(
-              height: 50.0,
-              child: FlatButton(
-                  onPressed: (){
-                    Navigator.pushNamed(context, '/selectmess');
-                  },
-                  child: Text('Select Mess'),
-                  color: Colors.red[900],
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: NetworkImage(
+                "https://previews.123rf.com/images/paitoonpati/paitoonpati1709/paitoonpati170900135/86156468-seamless-pattern-background-food-and-ingredient-kids-hand-drawing-set-illustration-isolated-on-white.jpg"
               ),
-            ),
-            SizedBox(
-              height: 20.0,
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Image(
+                  image: NetworkImage('https://raw.githubusercontent.com/carnage5/mess-spruce/master/lib/logo.jpeg'),
+                height: 300.0,
 
-            ),
-            ButtonTheme(
-              height: 50.0,
-              child: FlatButton(
-                  onPressed: (){
-                    Navigator.push(context,MaterialPageRoute(
-                        builder: (context){
-                          return qrscan(pass:var1); }));
-                  },
-                  child: Text('Scan QR'),
-                  color: Colors.red[900],
               ),
-            ),
-          ],
+              SizedBox(
+                height: 50.0,
+              ),
+              ButtonTheme(
+                height: 50.0,
+                child: FlatButton(
+                    onPressed: (){
+                      Navigator.pushNamed(context, '/selectmess');
+                    },
+                    child: Text('Select Mess'),
+                    color: Colors.orange,
+                ),
+              ),
+              SizedBox(
+                height: 20.0,
+
+              ),
+              ButtonTheme(
+                height: 50.0,
+                child: FlatButton(
+                    onPressed: (){
+                      Navigator.push(context,MaterialPageRoute(
+                          builder: (context){
+                            return qrscan(pass:var1); }));
+                    },
+                    child: Text('Scan QR'),
+                    color: Colors.orange,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
