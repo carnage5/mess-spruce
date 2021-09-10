@@ -5,6 +5,7 @@ import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/scheduler.dart';
 import 'dart:core';
+import 'package:mess/csvOperations.dart';
 
 class qrscan extends StatefulWidget {
   final String? pass;
@@ -49,7 +50,7 @@ class _qrscanState extends State<qrscan> {
   @override
   Widget build(BuildContext context) {
     String? srn=widget.pass; //users srn is stored here , use it to search the db and get mess alloted
-    messcheck="hello"; //store the alloted mess in this variable
+    messcheck=getMess(srn); //store the alloted mess in this variable
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(

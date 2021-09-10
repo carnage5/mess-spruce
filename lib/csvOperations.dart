@@ -33,8 +33,8 @@
 //
 // }
 var data = [
-  ['PES1UG20CS305', 'password305'],
-  ['PES1UG20CS315', 'password315'],
+  ['PES1UG20CS305', 'password305', 'Naamdhari'],
+  ['PES1UG20CS315', 'password315', 'Food Court'],
 ];
 
 String checkCredentials(String? srn) {
@@ -46,6 +46,15 @@ String checkCredentials(String? srn) {
       // else
       //   return false;
       return data[i][1];
+    }
+  }
+  return '';
+}
+
+String getMess(String? srn) {
+  for(int i = 0; i < data.length; i++)  {
+    if (data[i][0] == srn)  {
+      return data[i][2];
     }
   }
   return '';
