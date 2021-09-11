@@ -12,7 +12,6 @@ class _paymentState extends State<payment> {
   TextEditingController payment = new TextEditingController();
   int money=4500;
   int check=0;
-  int data=0;
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
@@ -85,9 +84,9 @@ class _paymentState extends State<payment> {
               minWidth: 100.0,
               child: FlatButton(
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
+                    borderRadius: BorderRadius.circular(30)),
                 onPressed: (){
-                  if(int.parse(payment.text)>4500)
+                  if(int.parse(payment.text)>money)
                     showAlertDialog1(context);
                   else {
                     showAlertDialog(context,int.parse(payment.text));
@@ -114,6 +113,7 @@ showAlertDialog(BuildContext context,int pay) {
 
   Widget confirmButton = FlatButton(
     child: Text("Confirm"),
+    color: Colors.orange,
     onPressed: () {
       Navigator.of(context).pop();
       showAlertDialog2(context);
@@ -121,6 +121,7 @@ showAlertDialog(BuildContext context,int pay) {
   );
   Widget cancelButton = FlatButton(
     child: Text("Cancel"),
+    color: Colors.orange,
     onPressed: () {
       Navigator.of(context).pop();
       
@@ -151,6 +152,7 @@ showAlertDialog1(BuildContext context) {
   // Create button
   Widget okButton = FlatButton(
     child: Text("Okay"),
+    color: Colors.orange,
     onPressed: () {
       Navigator.of(context).pop();
     },
@@ -177,6 +179,7 @@ showAlertDialog2(BuildContext context) {
   // Create button
   Widget okButton = FlatButton(
     child: Text("Okay"),
+    color: Colors.green,
     onPressed: () {
       Navigator.of(context).pop();
     },

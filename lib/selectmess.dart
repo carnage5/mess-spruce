@@ -102,6 +102,7 @@ class _selectmessState extends State<selectmess> {
 showAlertDialog(BuildContext context,String? mess) {
   // Create button
   Widget okButton = FlatButton(
+    color: Colors.orange,
     child: Text("OK"),
     onPressed: () {
       Navigator.of(context).pop();

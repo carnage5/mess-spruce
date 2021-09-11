@@ -35,7 +35,7 @@ class menu extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Image(
-                  image: NetworkImage('https://raw.githubusercontent.com/carnage5/mess-spruce/master/lib/logo.jpeg'),
+                  image: NetworkImage('https://raw.githubusercontent.com/carnage5/mess-spruce/master/lib/logof.jpg'),
                 height: 300.0,
 
               ),
