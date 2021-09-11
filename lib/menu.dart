@@ -50,6 +50,7 @@ class menu extends StatelessWidget {
                     },
                     child: Text('Select Mess'),
                     color: Colors.orange,
+                    shape: new RoundedRectangleBorder(      borderRadius: new BorderRadius.circular(30.0),    ),
                 ),
               ),
               SizedBox(
@@ -64,6 +65,7 @@ class menu extends StatelessWidget {
                           builder: (context){
                             return qrscan(pass:var1); }));
                     },
+                  shape: new RoundedRectangleBorder(      borderRadius: new BorderRadius.circular(30.0),    ),
                     child: Text('Scan QR'),
                     color: Colors.orange,
                 ),

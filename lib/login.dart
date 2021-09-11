@@ -111,6 +111,8 @@ class _loginState extends State<login> {
               child: ButtonTheme(
                 height: 50.0,
                 child: FlatButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
                   onPressed: (){
                     srn=srn_controller.text.toString();//srn holds the inputted srn from the user
 

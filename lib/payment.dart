@@ -84,6 +84,8 @@ class _paymentState extends State<payment> {
               height: 50.0,
               minWidth: 100.0,
               child: FlatButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
                 onPressed: (){
                   if(int.parse(payment.text)>4500)
                     showAlertDialog1(context);
