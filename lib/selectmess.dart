@@ -14,7 +14,7 @@ class _selectmessState extends State<selectmess> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: Colors.red[900],
+        backgroundColor: Colors.orange,
         title: Text(
           'Select Mess',
           style: TextStyle(
@@ -22,68 +22,78 @@ class _selectmessState extends State<selectmess> {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              ButtonTheme(
-                height: 50.0,
-                child: RaisedButton(
-                  child: Text('mess 1'),
-                  color: Colors.blueGrey,
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage(
+                "https://previews.123rf.com/images/paitoonpati/paitoonpati1709/paitoonpati170900135/86156468-seamless-pattern-background-food-and-ingredient-kids-hand-drawing-set-illustration-isolated-on-white.jpg"
+            ),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                ButtonTheme(
+                  height: 50.0,
+                  child: RaisedButton(
+                    child: Text('mess 1'),
+                    color: Colors.orange,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                    onPressed: () {
+                      setState(() {
+                        mess='mess 1';
+                      });
+
+                      showAlertDialog(context,mess);
+
+                    }
+                  ),
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                ButtonTheme(
+                  height: 50.0,
+                  child: RaisedButton(
+                    child: Text('mess 2'),
+                    color: Colors.orange,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
-                  onPressed: () {
-                    setState(() {
-                      mess='mess 1';
-                    });
-
-                    showAlertDialog(context,mess);
-
-                  }
+                    onPressed: () {
+                      setState(() {
+                        mess ='mess 2';
+                      });
+                      showAlertDialog(context,mess);
+                    },
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              ButtonTheme(
-                height: 50.0,
-                child: RaisedButton(
-                  child: Text('mess 2'),
-                  color: Colors.blueGrey,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
-                  onPressed: () {
-                    setState(() {
-                      mess ='mess 2';
-                    });
-                    showAlertDialog(context,mess);
-                  },
+                SizedBox(
+                  height: 20.0,
                 ),
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              ButtonTheme(
-                height: 50.0,
-                child: RaisedButton(
-                  child: Text('mess 3'),
-                  color: Colors.blueGrey,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
-                  onPressed: () {
-                    setState(() {
-                      mess ='mess 3';
-                    });
-                    showAlertDialog(context,mess);
-                  },
+                ButtonTheme(
+                  height: 50.0,
+                  child: RaisedButton(
+                    child: Text('mess 3'),
+                    color: Colors.orange,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    onPressed: () {
+                      setState(() {
+                        mess ='mess 3';
+                      });
+                      showAlertDialog(context,mess);
+                    },
+                  ),
                 ),
-              ),
 
-            ]
+              ]
 
+          ),
         ),
       ),
     );
