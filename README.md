@@ -27,3 +27,7 @@ We also are going to add a payment tracking system, instead of the current coupo
 # What we plan to complete in ICEB4 -
 
 We plan to develop a basic working model of an app that people can use to manage their mess activities with ease, with most of our core functions working well.
+
+#Blog
+
+https://medium.com/@anushree.anagha/mess-spruce-clean-the-mess-b9a38fe8be66
